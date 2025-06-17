@@ -1,3 +1,80 @@
+Metadata-Version: 2.4
+Name: researchpy
+Version: 0.3.6
+Summary: A comprehensive statistical analysis library for researchers producing publication-ready results with pandas DataFrames.
+Author-email: Corey Bryant <CoreyBryant10@gmail.com>
+Maintainer-email: Corey Bryant <CoreyBryant10@gmail.com>
+License: MIT License
+        
+        Copyright (c) 2018-2024 Corey Bryant
+        All rights reserved.
+        
+        Redistribution and use in source and binary forms, with or without
+        modification, are permitted provided that the following conditions are met:
+        
+          a. Redistributions of source code must retain the above copyright notice,
+             this list of conditions and the following disclaimer.
+          b. Redistributions in binary form must reproduce the above copyright
+             notice, this list of conditions and the following disclaimer in the
+             documentation and/or other materials provided with the distribution.
+          c. Neither the name of Researchpy nor the names of its contributors
+             may be used to endorse or promote products derived from this software
+             without specific prior written permission.
+        
+        THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND
+        ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+        WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE
+        DISCLAIMED. IN NO EVENT SHALL THE REGENTS OR CONTRIBUTORS BE LIABLE FOR ANY
+        DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES
+        (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;
+        LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON
+        ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+        (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF
+        THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+        
+Project-URL: Homepage, https://researchpy.readthedocs.io/
+Project-URL: Documentation, https://researchpy.readthedocs.io/
+Project-URL: Repository, https://github.com/researchpy/researchpy
+Project-URL: Bug Tracker, https://github.com/researchpy/researchpy/issues
+Project-URL: Source Code, https://github.com/researchpy/researchpy
+Keywords: statistics,research,analysis,t-test,anova,correlation,regression,data-science,academic-research,statistical-testing,effect-size,pandas,descriptive-statistics
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Education
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Information Analysis
+Classifier: Topic :: Scientific/Engineering :: Mathematics
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.7
+Classifier: Programming Language :: Python :: 3.8
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Programming Language :: Python :: 3.13
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.7
+Description-Content-Type: text/markdown
+License-File: LICENSE.txt
+Requires-Dist: scipy>=1.7.0
+Requires-Dist: numpy>=1.21.0
+Requires-Dist: pandas>=1.3.0
+Requires-Dist: statsmodels>=0.12.0
+Requires-Dist: patsy>=0.5.0
+Provides-Extra: dev
+Requires-Dist: pytest>=6.0; extra == "dev"
+Requires-Dist: pytest-cov; extra == "dev"
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: isort; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=4.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme; extra == "docs"
+Requires-Dist: numpydoc; extra == "docs"
+Dynamic: license-file
+
 # ResearchPy
 
 [![PyPI version](https://badge.fury.io/py/researchpy.svg)](https://badge.fury.io/py/researchpy)

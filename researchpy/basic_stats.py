@@ -1,14 +1,37 @@
+"""
+Basic statistical functions with missing data handling.
+
+This module provides fundamental statistical functions that properly handle
+missing (NaN) values, serving as building blocks for other researchpy functions.
+"""
+
+from typing import Union, List, Tuple
 import numpy
+import numpy as np
 import scipy.stats
 
 
-def count(d):
+def count(d: Union[numpy.ndarray, List]) -> int:
     """
+    Count the number of non-missing observations.
 
-        Counts the number of non-missing observations.
+    Parameters
+    ----------
+    d : array_like
+        Input data (array, list, or similar).
 
+    Returns
+    -------
+    int
+        The number of non-NaN observations.
+
+    Examples
+    --------
+    >>> import numpy as np
+    >>> data = [1, 2, np.nan, 4, 5]
+    >>> count(data)
+    4
     """
-
     return numpy.count_nonzero(~numpy.isnan(d))
 
 

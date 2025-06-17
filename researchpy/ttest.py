@@ -33,6 +33,83 @@ def ttest(group1, group2, group1_name= None, group2_name= None,
            equal_variances= True, paired= False,
            wilcox_parameters = {"zero_method" : "pratt", "correction" : False, "mode" : "auto"},
            welch_dof = "satterthwaite"):
+    """
+    Comprehensive t-test function supporting multiple test variants and effect sizes.
+    
+    This function performs various types of t-tests and provides comprehensive statistical
+    output including descriptive statistics, test results, and effect size measures
+    commonly required for academic research.
+    
+    Parameters
+    ----------
+    group1 : pandas.Series
+        First group of observations.
+    group2 : pandas.Series  
+        Second group of observations.
+    group1_name : str, optional
+        Name for the first group. If None, uses group1.name.
+    group2_name : str, optional
+        Name for the second group. If None, uses group2.name.
+    equal_variances : bool, default True
+        If True, performs standard independent t-test assuming equal variances.
+        If False, performs Welch's t-test for unequal variances.
+    paired : bool, default False
+        If True, performs paired samples t-test.
+        If False, performs independent samples t-test.
+    wilcox_parameters : dict, optional
+        Parameters for Wilcoxon signed-rank test:
+        - zero_method : {'pratt', 'wilcox', 'zsplit'}, default 'pratt'
+        - correction : bool, default False (continuity correction)
+        - mode : {'auto', 'exact', 'approx'}, default 'auto'
+    welch_dof : str, default 'satterthwaite'
+        Method for calculating degrees of freedom in Welch's t-test.
+        Currently only 'satterthwaite' is supported.
+    
+    Returns
+    -------
+    tuple of pandas.DataFrame
+        Two DataFrames:
+        1. Descriptive statistics table with N, Mean, SD, SE, and 95% confidence intervals
+        2. Test results table with test statistic, p-values, and effect sizes
+    
+    Notes
+    -----
+    Available test types:
+    - Independent samples t-test (equal_variances=True, paired=False)
+    - Welch's t-test (equal_variances=False, paired=False)  
+    - Paired samples t-test (paired=True)
+    - Wilcoxon signed-rank test (automatically used when appropriate)
+    
+    Effect sizes calculated:
+    - Cohen's d: Standardized mean difference
+    - Hedge's g: Bias-corrected Cohen's d for small samples
+    - Glass's delta: Uses control group standard deviation
+    - Point-biserial r: Correlation-based effect size
+    
+    Examples
+    --------
+    >>> import researchpy as rp
+    >>> import pandas as pd
+    >>> import numpy as np
+    >>> 
+    >>> # Independent samples t-test
+    >>> group1 = pd.Series([1, 2, 3, 4, 5])
+    >>> group2 = pd.Series([2, 3, 4, 5, 6])
+    >>> desc, results = rp.ttest(group1, group2)
+    >>> 
+    >>> # Paired samples t-test
+    >>> before = pd.Series([10, 12, 11, 13, 9])
+    >>> after = pd.Series([12, 14, 13, 15, 11])
+    >>> desc, results = rp.ttest(before, after, paired=True)
+    >>> 
+    >>> # Welch's t-test (unequal variances)
+    >>> desc, results = rp.ttest(group1, group2, equal_variances=False)
+    
+    References
+    ----------
+    Cohen, J. (1988). Statistical power analysis for the behavioral sciences (2nd ed.).
+    Hedges, L. V., & Olkin, I. (1985). Statistical methods for meta-analysis.
+    """
 
     # Joining groups for table and calculating group mean difference
     groups = pandas.concat([group1, group2], ignore_index=True)
@@ -282,9 +359,16 @@ def ttest(group1, group2, group1_name= None, group2_name= None,
 
 
     #### PUTTING THE INFORMATION INTO A DATAFRAME #####
-    table = pandas.DataFrame(numpy.zeros(shape= (3,7)),
+    table = pandas.DataFrame(index=range(3),
                          columns = ['Variable', 'N', 'Mean', 'SD', 'SE',
                                     '95% Conf.', 'Interval'])
+    
+    # Initialize numeric columns with zeros
+    for col in ['N', 'Mean', 'SD', 'SE', '95% Conf.', 'Interval']:
+        table[col] = 0.0
+    
+    # Initialize Variable column as object type for strings
+    table['Variable'] = table['Variable'].astype('object')
 
 
     # Setting up the first column (Variable names)
@@ -384,8 +468,12 @@ def ttest(group1, group2, group1_name= None, group2_name= None,
 
 
         # Testing Results #
-        table2 = pandas.DataFrame(numpy.zeros(shape= (7,2)),
+        table2 = pandas.DataFrame(index=range(7),
                          columns = ['Wilcoxon signed-rank test', 'results'])
+        
+        # Initialize columns with appropriate types
+        table2['Wilcoxon signed-rank test'] = table2['Wilcoxon signed-rank test'].astype('object')
+        table2['results'] = 0.0
 
         table2.iloc[0,0] = f"Mean for {group1_name} = "
         table2.iloc[0,1] = numpy.mean(group1)
@@ -411,8 +499,12 @@ def ttest(group1, group2, group1_name= None, group2_name= None,
         return table1, table2
 
     elif equal_variances == True and paired == True:
-        table2 = pandas.DataFrame(numpy.zeros(shape= (11,2)),
+        table2 = pandas.DataFrame(index=range(11),
                          columns = ['Test', 'results'])
+        
+        # Initialize columns with appropriate types
+        table2['Test'] = table2['Test'].astype('object')
+        table2['results'] = 0.0
 
         table2.rename(columns= {'Test': f'{test}'}, inplace= True)
 
@@ -452,8 +544,12 @@ def ttest(group1, group2, group1_name= None, group2_name= None,
         return table, table2
 
     else:
-        table2 = pandas.DataFrame(numpy.zeros(shape= (10,2)),
+        table2 = pandas.DataFrame(index=range(10),
                          columns = ['Test', 'results'])
+        
+        # Initialize columns with appropriate types
+        table2['Test'] = table2['Test'].astype('object')
+        table2['results'] = 0.0
 
         table2.rename(columns= {'Test': f'{test}'}, inplace= True)
 

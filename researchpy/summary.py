@@ -10,16 +10,19 @@ To do:
 
 """
 
+"""
+Summary statistics and descriptive analysis functions.
+
+This module provides comprehensive descriptive statistics for both continuous
+and categorical data, with support for grouped analysis and missing data handling.
+"""
+
 import pandas
 import numpy
 import scipy.stats
 from .basic_stats import *
 
 ## summary_cont() provides descriptive statistics for continuous data
-import pandas
-import numpy
-import scipy
-import scipy.stats
 
 def summary_cont(group1, conf = 0.95, decimals = 4):
 
