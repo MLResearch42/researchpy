@@ -170,12 +170,10 @@ def confidence_interval(d, alpha=0.95, n=None, loc=None, scale=None, decimals=4)
 
     """
 
-    if n == None:
+    if n is None:
         n = count(d) - 1
-    if loc == None:
-        central = numpy.nanmean(d)
-    if scale == None:
-        scaler = nansem(d)
+    central = numpy.nanmean(d) if loc is None else loc
+    scaler = nansem(d) if scale is None else scale
 
     ci_intervals = list(scipy.stats.t.interval(alpha,
                                                n,
@@ -220,15 +218,13 @@ def l_ci(d, alpha=0.95, n=None, loc=None, scale=None, decimals=4):
 
     """
 
-    if n == None:
+    if n is None:
         n = count(d) - 1
-    if loc == None:
-        central = numpy.nanmean(d)
-    if scale == None:
-        scaler = nansem(d)
+    central = numpy.nanmean(d) if loc is None else loc
+    scaler = nansem(d) if scale is None else scale
 
     l_ci, _ = scipy.stats.t.interval(alpha,
-                                     n - 1,
+                                     n,
                                      loc=central,
                                      scale=scaler)
     return round(l_ci, decimals)
@@ -264,15 +260,13 @@ def u_ci(d, alpha=0.95, n=None, loc=None, scale=None, decimals=4):
 
     """
 
-    if n == None:
+    if n is None:
         n = count(d) - 1
-    if loc == None:
-        central = numpy.nanmean(d)
-    if scale == None:
-        scaler = nansem(d)
+    central = numpy.nanmean(d) if loc is None else loc
+    scaler = nansem(d) if scale is None else scale
 
     _, u_ci = scipy.stats.t.interval(alpha,
-                                     n - 1,
+                                     n,
                                      loc=central,
                                      scale=scaler)
     return round(u_ci, decimals)
