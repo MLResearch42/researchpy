@@ -25,28 +25,38 @@ from .ttest import ttest
 from .difference_test import difference_test
 
 # Summary statistics
-from .summary import (
-    summary_cont, summary_cat, codebook, summarize
-)
+from .summary import summary_cont, summary_cat, codebook, summarize
 
 # Correlation analysis
-from .correlation import (
-    corr_case, corr_pair
-)
+from .correlation import corr_case, corr_pair
 
 # Crosstabulation and chi-square
 from .crosstab import crosstab
 
+# Visualization functions
+from .visualization import (
+    plot_ttest,
+    plot_correlation,
+    plot_anova,
+    plot_crosstab,
+)
+
 # Basic statistical functions
 from .basic_stats import (
-    count, nanvar, nanstd, nansem, value_range, 
-    kurtosis, skew, confidence_interval, l_ci, u_ci
+    count,
+    nanvar,
+    nanstd,
+    nansem,
+    value_range,
+    kurtosis,
+    skew,
+    confidence_interval,
+    l_ci,
+    u_ci,
 )
 
 # Utility functions
-from .utility import (
-    variable_information, base_table
-)
+from .utility import variable_information, base_table
 
 # Advanced statistical modeling
 from .model import model
@@ -58,42 +68,64 @@ from .signrank import signrank
 
 # Model utilities and prediction
 from .predict import (
-    predict, predict_y, residuals, standardized_residuals,
-    studentized_residuals, leverage
+    predict,
+    predict_y,
+    residuals,
+    standardized_residuals,
+    studentized_residuals,
+    leverage,
 )
 
 # Define what gets imported with "from researchpy import *"
 __all__ = [
     # Metadata
-    '__version__', '__author__', '__email__', '__license__',
-    
+    "__version__",
+    "__author__",
+    "__email__",
+    "__license__",
     # Core statistical tests
-    'ttest', 'difference_test',
-    
+    "ttest",
+    "difference_test",
     # Summary statistics
-    'summary_cont', 'summary_cat', 'codebook', 'summarize',
-    
+    "summary_cont",
+    "summary_cat",
+    "codebook",
+    "summarize",
     # Correlation analysis
-    'corr_case', 'corr_pair',
-    
+    "corr_case",
+    "corr_pair",
     # Crosstabulation
-    'crosstab',
-    
+    "crosstab",
+    # Visualization functions
+    "plot_ttest",
+    "plot_correlation",
+    "plot_anova",
+    "plot_crosstab",
     # Basic statistics
-    'count', 'nanvar', 'nanstd', 'nansem', 'value_range',
-    'kurtosis', 'skew', 'confidence_interval', 'l_ci', 'u_ci',
-    
+    "count",
+    "nanvar",
+    "nanstd",
+    "nansem",
+    "value_range",
+    "kurtosis",
+    "skew",
+    "confidence_interval",
+    "l_ci",
+    "u_ci",
     # Utility functions
-    'variable_information', 'base_table',
-    
+    "variable_information",
+    "base_table",
     # Advanced modeling
-    'model', 'anova', 'ols',
-    
+    "model",
+    "anova",
+    "ols",
     # Non-parametric tests
-    'signrank',
-    
+    "signrank",
     # Model utilities
-    'predict', 'predict_y', 'residuals', 'standardized_residuals',
-    'studentized_residuals', 'leverage'
+    "predict",
+    "predict_y",
+    "residuals",
+    "standardized_residuals",
+    "studentized_residuals",
+    "leverage",
 ]
-
