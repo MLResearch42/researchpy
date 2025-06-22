@@ -14,6 +14,7 @@
 - **Missing Data Handling**: Robust handling of missing values across all functions
 - **Effect Size Calculations**: Comprehensive effect size measures (Cohen's d, Hedge's g, etc.)
 - **Professional Documentation**: Detailed statistical information for academic use
+- **Visualization Utilities**: High-quality plotting functions for t-tests, ANOVA, correlations, and crosstabs
 
 ## 📦 Installation
 
@@ -48,6 +49,10 @@ group2 = pd.Series(np.random.normal(12, 2, 30), name='Treatment')
 descriptives, results = rp.ttest(group1, group2)
 print(descriptives)
 print(results)
+
+# Visualize the distributions
+rp.plot_ttest(group1, group2)
+rp.plot_correlation(pd.DataFrame({'group1': group1, 'group2': group2}))
 ```
 
 ## 📚 Core Functions
@@ -240,8 +245,26 @@ T-test functions provide multiple effect size measures:
 
 ```python
 # Different effect sizes for paired t-test
-desc, results = rp.ttest(before, after, paired=True, 
+desc, results = rp.ttest(before, after, paired=True,
                          effect_size=['cohen_d', 'hedge_g'])
+```
+
+### Visualization Utilities
+
+Easily generate professional plots for common statistical tests:
+
+```python
+# T-test distribution plot
+rp.plot_ttest(group1, group2)
+
+# Correlation heatmap
+rp.plot_correlation(data[['var1', 'var2', 'var3']])
+
+# ANOVA group comparison
+rp.plot_anova("score ~ group", data=df)
+
+# Crosstab heatmap
+rp.plot_crosstab(df['group'], df['outcome'])
 ```
 
 ## 📊 Output Format
